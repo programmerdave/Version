@@ -245,15 +245,15 @@ extension NSProcessInfo {
 
 
 // MARK: UIKit Extensions
-
-#if os(iOS)
-    import UIKit
-
-    extension UIDevice {
-        /// The current version of the operating system.
-        public var systemVersion: Version? {
-            return Version(self.systemVersion() as String)
-        }
-    }
-
-#endif
+//
+//#if os(iOS)
+//    import UIKit
+//
+//    extension UIDevice {
+//        /// The current version of the operating system.
+//        public var systemVersion: Version? {
+//            return Version(self.systemVersion() as String)
+//        }
+//    }
+//
+//#endif
