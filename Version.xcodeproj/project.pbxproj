@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		177362371DA1E7C100BF6DB6 /* Version.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 712D32A119BD06570093BAD7 /* Version.framework */; };
 		712D32A719BD06570093BAD7 /* Version.h in Headers */ = {isa = PBXBuildFile; fileRef = 712D32A619BD06570093BAD7 /* Version.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		712D32B119BD06570093BAD7 /* VersionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712D32B019BD06570093BAD7 /* VersionTests.swift */; };
 		712D32BB19BD06620093BAD7 /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712D32BA19BD06620093BAD7 /* Version.swift */; };
@@ -53,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				177362371DA1E7C100BF6DB6 /* Version.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -190,9 +192,11 @@
 				TargetAttributes = {
 					712D32A019BD06570093BAD7 = {
 						CreatedOnToolsVersion = 6.0;
+						LastSwiftMigration = 0800;
 					};
 					712D32AB19BD06570093BAD7 = {
 						CreatedOnToolsVersion = 6.0;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -300,6 +304,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -333,6 +338,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				SWIFT_VERSION = 3.0;
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -356,6 +362,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -375,6 +382,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "de.mariusrackwitz.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -382,7 +390,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 29EA596D1B5A448E002D767E /* UniversalFramework_Test.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				COMBINE_HIDPI_IMAGES = YES;
+				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -390,6 +400,7 @@
 				INFOPLIST_FILE = VersionTests/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.mariusrackwitz.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -397,10 +408,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 29EA596D1B5A448E002D767E /* UniversalFramework_Test.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				COMBINE_HIDPI_IMAGES = YES;
+				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
 				INFOPLIST_FILE = VersionTests/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.mariusrackwitz.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

@@ -14,26 +14,26 @@ extension String {
         return NSMakeRange(0, self.utf16.count)
     }
     
-    func substringWithRange(range: NSRange) -> String {
-        let rangeStart : String.Index = self.startIndex.advancedBy(range.location)
-        return self.substringWithRange(rangeStart..<rangeStart.advancedBy(range.length))
+    func substringWithRange(_ range: NSRange) -> String {
+        let rangeStart : String.Index = self.characters.index(self.startIndex, offsetBy: range.location)
+        return self.substring(with: rangeStart..<self.characters.index(rangeStart, offsetBy: range.length))
     }
 }
 
 
 struct Regex {
     let pattern: String
-    let options: NSRegularExpressionOptions
+    let options: NSRegularExpression.Options
     let matcher: NSRegularExpression!
     
-    init?(pattern: String, options: NSRegularExpressionOptions = []) {
+    init?(pattern: String, options: NSRegularExpression.Options = []) {
         self.init(pattern: pattern, options: options, error: nil)
         if self.matcher == nil {
             return nil
         }
     }
     
-    init(pattern: String, options: NSRegularExpressionOptions = [], error: NSErrorPointer? = nil) {
+    init(pattern: String, options: NSRegularExpression.Options = [], error: NSErrorPointer? = nil) {
         self.pattern = pattern
         self.options = options
         var e: NSError?
@@ -44,18 +44,18 @@ struct Regex {
             self.matcher = nil
         }
         if let pointer = error {
-            pointer.memory = e
+            pointer?.pointee = e
         }
     }
     
-    func match(string: String, options: NSMatchingOptions = []) -> Bool {
-        return self.matcher.numberOfMatchesInString(string, options: options, range: string.range) != 0
+    func match(_ string: String, options: NSRegularExpression.MatchingOptions = []) -> Bool {
+        return self.matcher.numberOfMatches(in: string, options: options, range: string.range) != 0
     }
     
-    func matchingsOf(string: String, options: NSMatchingOptions = []) -> [String] {
+    func matchingsOf(_ string: String, options: NSRegularExpression.MatchingOptions = []) -> [String] {
         var matches : [String] = []
-        self.matcher.enumerateMatchesInString(string, options: options, range: string.range) {
-            (result: NSTextCheckingResult?, flags: NSMatchingFlags, stop: UnsafeMutablePointer<ObjCBool>) in
+        self.matcher.enumerateMatches(in: string, options: options, range: string.range) {
+            (result: NSTextCheckingResult?, flags: NSRegularExpression.MatchingFlags, stop: UnsafeMutablePointer<ObjCBool>) in
             if let result = result {
                 matches.append(string.substringWithRange(result.range))
             }
@@ -63,12 +63,12 @@ struct Regex {
         return matches
     }
     
-    func groupsOfFirstMatch(string: String, options: NSMatchingOptions = []) -> [String] {
-        let match = self.matcher.firstMatchInString(string, options: options, range: string.range)
+    func groupsOfFirstMatch(_ string: String, options: NSRegularExpression.MatchingOptions = []) -> [String] {
+        let match = self.matcher.firstMatch(in: string, options: options, range: string.range)
         var groups : [String] = []
         if let match = match {
             for i in 0..<match.numberOfRanges {
-                let range = match.rangeAtIndex(i)
+                let range = match.rangeAt(i)
                 if range.location != NSNotFound {
                     groups.append(string.substringWithRange(range))
                 }
@@ -83,7 +83,7 @@ func ==(lhs: Regex, rhs: Regex) -> Bool {
         && lhs.options == rhs.options
 }
 
-extension Regex: StringLiteralConvertible {
+extension Regex: ExpressibleByStringLiteral {
     typealias UnicodeScalarLiteralType = StringLiteralType
     typealias ExtendedGraphemeClusterLiteralType = StringLiteralType
     
